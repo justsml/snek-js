@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "checkJs": true,
+    "resolveJsonModule": true
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  }
+}
