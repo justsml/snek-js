@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SnakeGame Snapshot Tests can move down then left: 1-down 1`] = `
+"          
+          
+          
+          
+          
+     #    
+     ▼    
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move down then left: 1-left 1`] = `
+"          
+          
+          
+          
+          
+     #    
+    ◀#    
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move down then left: initial 1`] = `
+"          
+          
+          
+          
+          
+     ▲    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move down: 1-down 1`] = `
+"          
+          
+          
+          
+          
+     #    
+     ▼    
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move down: initial 1`] = `
+"          
+          
+          
+          
+          
+     ▲    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move left: 1-down 1`] = `
+"          
+          
+          
+          
+          
+     #    
+     ▼    
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can move left: initial 1`] = `
+"          
+          
+          
+          
+          
+     ▲    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests can start a 10x10 game: initial 1`] = `
+"          
+          
+          
+          
+          
+     ▲    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests handles multi-step navigation changes: part-1 1`] = `
+"          
+          
+          
+     ▲    
+     #    
+     #    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests handles multi-step navigation changes: part-2 1`] = `
+"          
+          
+          
+     ###▶︎ 
+     #    
+     #    
+          
+          
+          
+          "
+`;
+
+exports[`SnakeGame Snapshot Tests handles multi-step navigation changes: part-3 1`] = `
+"          
+          
+          
+     #### 
+     #  # 
+     #  ▼ 
+          
+          
+          
+          "
+`;
