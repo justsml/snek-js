@@ -5,12 +5,13 @@ const renderAsciiGrid = grid => {
 }
 
 // Make a pull-based renderer - i.e. generators
-const getHeadIcon = ({ direction }) => {
+export const getHeadIcon = ({ direction }) => {
   if (direction === 'up') return `▲`
   if (direction === 'down') return `▼`
   if (direction === 'left') return `◀`
   if (direction === 'right') return `▶︎`
-  return '🐍'
+  throw Error('Invalid direction: ' + direction)
+  // return '🐍'
 }
 export const getNextCell = (currentHead, direction) => {
   currentHead.x = parseInt(currentHead.x, 10)

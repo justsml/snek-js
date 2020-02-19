@@ -104,6 +104,26 @@ exports[`SnakeGame Snapshot Tests can start a 10x10 game: initial 1`] = `
           "
 `;
 
+exports[`SnakeGame Snapshot Tests can start a default size game: initial 1`] = `
+"           
+           
+           
+           
+           
+           
+      ▲    
+           
+           
+           
+           "
+`;
+
+exports[`SnakeGame Snapshot Tests handles JSON output mode: part-1 1`] = `undefined`;
+
+exports[`SnakeGame Snapshot Tests handles JSON output mode: part-2 1`] = `undefined`;
+
+exports[`SnakeGame Snapshot Tests handles JSON output mode: part-3 1`] = `undefined`;
+
 exports[`SnakeGame Snapshot Tests handles multi-step navigation changes: part-1 1`] = `
 "          
           
@@ -141,4 +161,18 @@ exports[`SnakeGame Snapshot Tests handles multi-step navigation changes: part-3 
           
           
           "
+`;
+
+exports[`SnakeGame Snapshot Tests throws on invalid direction: before-invalid-direction 1`] = `
+"           
+           
+           
+           
+           
+           
+      ▲    
+           
+           
+           
+           "
 `;
