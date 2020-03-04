@@ -22,8 +22,8 @@ export const getNextCell = (currentHead, direction) => {
   if (direction === 'right') return { x: currentHead.x + 1, y: currentHead.y }
   throw Error('Invalid direction: ' + direction)
 }
-export const isMoveValid = ({move, limitX = 10, limitY = 10}) => {
-  return (move.x >= 0 && move.x < limitX) && (move.y >= 0 && move.y < limitY)
+export const isMoveValid = ({move, sizeX = 10, sizeY = 10}) => {
+  return (move.x >= 0 && move.x < sizeX) && (move.y >= 0 && move.y < sizeY)
 }
 
 
@@ -43,10 +43,16 @@ export default function* SnakeGame({ size = 11, output = 'ascii' }) {
 
   while (true) {
     const nextDirection = yield getGameState()
-    snake.direction = nextDirection || snake.direction
+    if (nextDirection) {
+      getHeadIcon({ direction: nextDirection })
+      snake.direction = nextDirection
+      continue
+    }
+
     const prevHead = snake.cells[0]
     const nextMove = getNextCell(prevHead, snake.direction)
-    if (!isMoveValid({move: nextMove, limitY: size, limitX: size})) throw new Error('Game over: ' + JSON.stringify(nextMove))
+    if (!isMoveValid({move: nextMove, sizeY: size, sizeX: size}))
+      return getGameState() // throw new Error('Game over: ' + JSON.stringify(nextMove))
     snake.cells.unshift(nextMove)
     const currHead = snake.cells[0]
     grid[prevHead.y][prevHead.x] = BODY_CELL

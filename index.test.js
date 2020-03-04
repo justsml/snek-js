@@ -21,17 +21,16 @@ describe('SnakeGame Functional Tests', () => {
     expect(getHeadIcon({ direction: 'right' })).toEqual('▶︎')
   })
   it('isMoveValid() should detect invalid moves', () => {
-    const limit = 10
-    expect(isMoveValid({move: {x: 0, y: 0}, limitX: limit, limitY: limit})).toBeTruthy()
-    expect(isMoveValid({move: {x: 9, y: 9}, limitX: limit, limitY: limit})).toBeTruthy()
-    expect(isMoveValid({move: {x: -1, y: 0}, limitX: limit, limitY: limit})).toBeFalsy()
-    expect(isMoveValid({move: {x: 0, y: -1}, limitX: limit, limitY: limit})).toBeFalsy()
+    const size = 10
+    expect(isMoveValid({move: {x: 0, y: 0}, sizeX: size, sizeY: size})).toBeTruthy()
+    expect(isMoveValid({move: {x: 9, y: 9}, sizeX: size, sizeY: size})).toBeTruthy()
+    expect(isMoveValid({move: {x: -1, y: 0}, sizeX: size, sizeY: size})).toBeFalsy()
+    expect(isMoveValid({move: {x: 0, y: -1}, sizeX: size, sizeY: size})).toBeFalsy()
     expect(isMoveValid({move: {x: 0, y: 0}})).toBeTruthy()
     expect(isMoveValid({move: {x: 9, y: 9}})).toBeTruthy()
     expect(isMoveValid({move: {x: -1, y: 0}})).toBeFalsy()
     expect(isMoveValid({move: {x: 0, y: -1}})).toBeFalsy()
   })
-
 })
 
 describe('SnakeGame Snapshot Tests', () => {
@@ -49,32 +48,40 @@ describe('SnakeGame Snapshot Tests', () => {
     const game = SnakeGame({ size: 10, output: 'ascii' })
     let state = null
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('initial')
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('1-down')
   })
   it('can move left', () => {
     const game = SnakeGame({ size: 10, output: 'ascii' })
     let state = null
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('initial')
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('1-down')
   })
   it('can move down then left', () => {
     const game = SnakeGame({ size: 10, output: 'ascii' })
     let state = null
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('initial')
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('1-down')
     state = game.next('left').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('1-left')
   })
   it('throws on invalid direction', () => {
     const game = SnakeGame({ })
     let state = null
     state = game.next('down').value.output
+    state = game.next().value.output
     expect(state).toMatchSnapshot('before-invalid-direction')
     expect(() => game.next('💩')).toThrowError(/invalid/ig)
   })
@@ -84,13 +91,16 @@ describe('SnakeGame Snapshot Tests', () => {
     let state = null
     game.next('up')
     game.next()
+    game.next()
     state = game.next().value.output
     expect(state).toMatchSnapshot('part-1')
     game.next('right')
     game.next()
+    game.next()
     state = game.next().value.output
     expect(state).toMatchSnapshot('part-2')
     game.next('down')
+    game.next()
     state = game.next().value.output
     expect(state).toMatchSnapshot('part-3')
   })
@@ -113,12 +123,13 @@ describe('SnakeGame Snapshot Tests', () => {
   it('throws error on invalid moves', () => {
     const game = SnakeGame({ size: 10, output: 'ascii' })
     game.next('up')
-    game.next('up')
-    game.next('up')
-    game.next('up')
-    game.next('up')
-    game.next('up')
-    expect(() => game.next('up')).toThrowError(/game over/mig)
+    game.next()
+    game.next()
+    game.next()
+    game.next()
+    game.next()
+
+    expect(game.next().done).toBeTruthy()
   })
 })
 

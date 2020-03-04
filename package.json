@@ -11,6 +11,7 @@
   "author": "Dan Levy",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "delay": "^4.3.0",
     "esm": "^3.2.25"
   },
   "devDependencies": {
