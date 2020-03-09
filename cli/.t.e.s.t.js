@@ -5,7 +5,7 @@ import {render} from 'ink-testing-library';
 import App from './ui';
 
 test('greet unknown user', t => {
-	const {lastFrame} = render(<App/>);
+	const {lastFrame, frames, stdin} = render(<App/>);
 
 	t.is(lastFrame(), chalk`Hello, {green Stranger}`);
 });
