@@ -26,20 +26,20 @@ export const isMoveValid = ({move, sizeX = 10, sizeY = 10}) => {
   return (move.x >= 0 && move.x < sizeX) && (move.y >= 0 && move.y < sizeY)
 }
 
-
 export default function* SnakeGame({ size = 11, output = 'ascii' }) {
   const centerStart = (size / 2.0).toFixed(0)
   const grid = Array.from({ length: size }, () => Array.from({ length: size }, () => ' '))
   // note: cells records the sequence of steps, might be overkill, let's get back to tests
   const snake = { direction: 'up', cells: [{ x: centerStart, y: centerStart }] }
+  const moves = []
 
   // set the start position
   grid[centerStart][centerStart] = getHeadIcon({ direction: snake.direction })
 
   // const getCellIcon = (coords, index) => index === 0 ? '🐍' : BODY_CELL //'＃'
   const getGameState = () => output === 'ascii'
-    ? {output: renderAsciiGrid(grid)}
-    : JSON.parse(JSON.stringify({ grid, snake }))
+    ? { moves, snake, output: renderAsciiGrid(grid) }
+    : JSON.parse(JSON.stringify({ moves, grid, snake }))
 
   while (true) {
     const nextDirection = yield getGameState()
@@ -48,7 +48,7 @@ export default function* SnakeGame({ size = 11, output = 'ascii' }) {
       snake.direction = nextDirection
       continue
     }
-
+    moves.push(snake.direction)
     const prevHead = snake.cells[0]
     const nextMove = getNextCell(prevHead, snake.direction)
     if (!isMoveValid({move: nextMove, sizeY: size, sizeX: size}))

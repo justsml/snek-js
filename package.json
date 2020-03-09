@@ -12,7 +12,8 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "delay": "^4.3.0",
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "ink-box": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

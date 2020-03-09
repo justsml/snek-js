@@ -110,14 +110,14 @@ describe('SnakeGame Snapshot Tests', () => {
     let state = null
     game.next('up')
     game.next()
-    state = game.next().value.output
+    state = game.next().value
     expect(state).toMatchSnapshot('part-1')
     game.next('left')
     game.next('left')
-    state = game.next().value.output
+    state = game.next().value
     expect(state).toMatchSnapshot('part-2')
     game.next('down')
-    state = game.next().value.output
+    state = game.next().value
     expect(state).toMatchSnapshot('part-3')
   })
   it('throws error on invalid moves', () => {
