@@ -12,11 +12,16 @@ const cli = meow(`
 	  $ cli
 
 	Options
-		--name  Your name
+		--speed=2, -s  Speed in seconds
 
 	Examples
-	  $ cli --name=Jane
-	  Hello, Jane
+		$ cli --speed=2.5
+
+		# Faster
+		$ cli --speed=0.5
+
 `);
 
-render(React.createElement(ui, cli.flags));
+globalThis.flags = cli.flags
+
+render(React.createElement(ui, cli.flags), { experimental: true });
